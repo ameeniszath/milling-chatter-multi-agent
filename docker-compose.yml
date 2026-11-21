@@ -1,0 +1,12 @@
+# Agents API + n8n workflow editor. Import n8n/workflow_v1_course_demo.json in n8n and point its
+# HTTP nodes at http://agents:8000/... (see README, "Run with n8n").
+services:
+  agents:
+    build: .
+    ports: ["8000:8000"]
+  n8n:
+    image: n8nio/n8n:latest
+    ports: ["5678:5678"]
+    volumes: ["n8n_data:/home/node/.n8n"]
+volumes:
+  n8n_data:

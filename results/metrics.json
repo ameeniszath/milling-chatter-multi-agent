@@ -1,0 +1,192 @@
+{
+  "dataset": {
+    "test_cuts": 190,
+    "stable": 114,
+    "chatter": 76,
+    "speeds_rpm": [
+      2000.0,
+      20000.0
+    ],
+    "depths_mm": [
+      1.0,
+      15.0
+    ]
+  },
+  "chatter_detection_cv": {
+    "clean": {
+      "SVM": {
+        "accuracy_pct": 96.4,
+        "std_pct": 0.7,
+        "chatter_recall_pct": 95.9
+      },
+      "Random Forest": {
+        "accuracy_pct": 96.0,
+        "std_pct": 0.3,
+        "chatter_recall_pct": 94.9
+      },
+      "Naive Bayes": {
+        "accuracy_pct": 97.7,
+        "std_pct": 0.2,
+        "chatter_recall_pct": 96.1
+      }
+    },
+    "30": {
+      "SVM": {
+        "accuracy_pct": 97.4,
+        "std_pct": 0.0,
+        "chatter_recall_pct": 94.7
+      },
+      "Random Forest": {
+        "accuracy_pct": 96.4,
+        "std_pct": 0.2,
+        "chatter_recall_pct": 93.6
+      },
+      "Naive Bayes": {
+        "accuracy_pct": 97.4,
+        "std_pct": 0.0,
+        "chatter_recall_pct": 94.7
+      }
+    },
+    "20": {
+      "SVM": {
+        "accuracy_pct": 97.4,
+        "std_pct": 0.0,
+        "chatter_recall_pct": 94.7
+      },
+      "Random Forest": {
+        "accuracy_pct": 96.4,
+        "std_pct": 0.4,
+        "chatter_recall_pct": 93.6
+      },
+      "Naive Bayes": {
+        "accuracy_pct": 97.4,
+        "std_pct": 0.0,
+        "chatter_recall_pct": 94.7
+      }
+    },
+    "10": {
+      "SVM": {
+        "accuracy_pct": 97.2,
+        "std_pct": 0.3,
+        "chatter_recall_pct": 94.2
+      },
+      "Random Forest": {
+        "accuracy_pct": 96.9,
+        "std_pct": 0.3,
+        "chatter_recall_pct": 94.5
+      },
+      "Naive Bayes": {
+        "accuracy_pct": 96.9,
+        "std_pct": 0.2,
+        "chatter_recall_pct": 93.6
+      }
+    }
+  },
+  "deployed_detector": {
+    "model": "SVM",
+    "trained_on": "clean + 30/20/10 dB noise",
+    "accuracy_pct": 97.1,
+    "std_pct": 0.2,
+    "chatter_recall_pct": 95.0
+  },
+  "detection_20db_confusion": {
+    "rows_true_cols_pred": "[stable, chatter]",
+    "matrix": [
+      [
+        113,
+        1
+      ],
+      [
+        4,
+        72
+      ]
+    ]
+  },
+  "stability_lobe_diagram": {
+    "SVM": {
+      "from_true_labels": {
+        "map_agreement_pct": 96.863,
+        "limit_mae_mm": 0.427,
+        "limit_median_err_mm": 0.228,
+        "unsafe_area_pct": 2.277
+      },
+      "from_detected_labels": {
+        "map_agreement_pct": 96.878,
+        "limit_mae_mm": 0.428,
+        "limit_median_err_mm": 0.216,
+        "unsafe_area_pct": 2.497
+      }
+    },
+    "Random Forest": {
+      "from_true_labels": {
+        "map_agreement_pct": 95.67,
+        "limit_mae_mm": 0.546,
+        "limit_median_err_mm": 0.443,
+        "unsafe_area_pct": 3.117
+      },
+      "from_detected_labels": {
+        "map_agreement_pct": 95.706,
+        "limit_mae_mm": 0.544,
+        "limit_median_err_mm": 0.442,
+        "unsafe_area_pct": 3.402
+      }
+    },
+    "Naive Bayes": {
+      "from_true_labels": {
+        "map_agreement_pct": 85.316,
+        "limit_mae_mm": 2.195,
+        "limit_median_err_mm": 1.976,
+        "unsafe_area_pct": 9.203
+      },
+      "from_detected_labels": {
+        "map_agreement_pct": 84.943,
+        "limit_mae_mm": 2.25,
+        "limit_median_err_mm": 2.063,
+        "unsafe_area_pct": 9.871
+      }
+    },
+    "Bracket + interpolation (non-ML baseline)": {
+      "from_detected_labels": {
+        "limit_mae_mm": 0.366
+      }
+    }
+  },
+  "safety_margin_study": {
+    "10%": {
+      "same_speed_advice_truly_stable_pct": 97.9,
+      "all_speeds_safe_depth_truly_stable_pct": 75.3
+    },
+    "15%": {
+      "same_speed_advice_truly_stable_pct": 100.0,
+      "all_speeds_safe_depth_truly_stable_pct": 84.5
+    },
+    "20%": {
+      "same_speed_advice_truly_stable_pct": 100.0,
+      "all_speeds_safe_depth_truly_stable_pct": 87.5
+    },
+    "25%": {
+      "same_speed_advice_truly_stable_pct": 100.0,
+      "all_speeds_safe_depth_truly_stable_pct": 89.8
+    }
+  },
+  "decision_agent": {
+    "safety_margin_pct": 20,
+    "requests_evaluated": 190,
+    "same_speed_advice_truly_stable_pct": 100.0,
+    "best_speed_advice_truly_stable_pct": 100.0,
+    "best_pocket": {
+      "rpm": 15050.0,
+      "doc_mm": 11.6,
+      "mrr_cm3_min": 174.6,
+      "theory_limit_mm": 13.38
+    },
+    "conservative_rule": {
+      "rpm": 20000,
+      "doc_mm": 0.95,
+      "mrr_cm3_min": 19.0,
+      "note": "depth kept below the lowest chatter limit at any speed (no lobe diagram)"
+    },
+    "mrr_gain_vs_conservative_x": 9.2,
+    "median_mrr_gain_for_chatter_requests_x": 8.5
+  }
+}
