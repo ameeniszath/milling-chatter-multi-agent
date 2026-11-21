@@ -8,7 +8,7 @@
 
 | What | Result |
 |---|---|
-| Chatter detected from vibration alone (190 test cuts, unseen recordings, sensor noise 10 to 30 dB) | **97.1 %** accuracy, 95 % of chatter cuts caught (SVM) |
+| Chatter detected from vibration alone (190 simulated test cuts, unseen recordings, sensor noise 10 to 30 dB) | **97.1 %** accuracy, 95 % of chatter cuts caught (SVM) |
 | Stability lobe diagram learned from the agents' own detections vs. theory | **96.9 %** of the speed-depth map correct, limit within **0.43 mm** on average |
 | "Best speed" advice that is truly chatter-free (checked against theory) | **100 %** |
 | Metal removal rate at the recommended lobe pocket vs. staying below the lowest chatter limit | **9.2x** |
